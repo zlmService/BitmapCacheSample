@@ -61,16 +61,16 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     DiskLruCache.Editor editor = mDiskLruCache.edit(MyUtils.hashKeyFormUrl(url));
-                    if (editor != null) {
-                        //由于open方法中设置了一个节点只能有一个数据，所以常量设置为0即可。
-                        OutputStream outputStream = editor.newOutputStream(DISK_CACHE_INDEX);
-                        if (MyUtils.downUrlToStream(url, outputStream)) {
-                            editor.commit();//通过这个方法 才真正的存储到手机里
-                        } else {
-                            //如果下载过程出现异常，可以通过这个方法进行回退整个操作
-                            editor.abort();
-                        }
-                        mDiskLruCache.flush();
+                        if (editor != null) {
+                            //由于open方法中设置了一个节点只能有一个数据，所以常量设置为0即可。
+                            OutputStream outputStream = editor.newOutputStream(DISK_CACHE_INDEX);
+                            if (MyUtils.downUrlToStream(url, outputStream)) {
+                                editor.commit();//通过这个方法 才真正的存储到手机里
+                            } else {
+                                //如果下载过程出现异常，可以通过这个方法进行回退整个操作
+                                editor.abort();
+                            }
+                            mDiskLruCache.flush();
                     }
                 }catch (IOException e){
                     e.toString();
