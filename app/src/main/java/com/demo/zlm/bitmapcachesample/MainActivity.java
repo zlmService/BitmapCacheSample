@@ -2,6 +2,7 @@ package com.demo.zlm.bitmapcachesample;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         mDiskLruCache=initDiskLruCache();
     }
 
+    public void startMain2Click(View v){
+        Intent intent=new Intent(this,Main2Activity.class);
+        startActivity(intent);
+    }
     //查找图片并显示
     public void findCacheBitmapClick(View v){
         Bitmap bitmap=null;
